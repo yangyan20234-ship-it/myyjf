@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日天气卡片</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "微软雅黑", sans-serif;
+        }
+        body {
+            background: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        /* 天气卡片样式 */
+        .weather-card {
+            width: 340px;
+            background: linear-gradient(135deg, #5b9aff, #3672e9);
+            border-radius: 20px;
+            padding: 30px;
+            color: #fff;
+            box-shadow: 0 8px 25px rgba(54, 114, 233, 0.3);
+        }
+        .city {
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        .date {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 25px;
+        }
+        .temp-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        .temp {
+            font-size: 60px;
+            font-weight: bold;
+        }
+        .weather-desc {
+            font-size: 20px;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 20px;
+        }
+        .info-item {
+            text-align: center;
+        }
+        .info-item p:first-child {
+            font-size: 14px;
+            opacity: 0.85;
+            margin-bottom: 5px;
+        }
+        .info-item p:last-child {
+            font-size: 18px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="weather-card">
+        <div class="city">成都</div>
+        <div class="date">2026年05月01日 星期五</div>
+        
+        <div class="temp-box">
+            <div class="temp">24°</div>
+            <div class="weather-desc">多云 微风</div>
+        </div>
+
+        <div class="info-row">
+            <div class="info-item">
+                <p>最高温</p>
+                <p>28°</p>
+            </div>
+            <div class="info-item">
+                <p>最低温</p>
+                <p>16°</p>
+            </div>
+            <div class="info-item">
+                <p>湿度</p>
+                <p>52%</p>
+            </div>
+            <div class="info-item">
+                <p>风力</p>
+                <p>3级</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
