@@ -3,102 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>今日天气卡片</title>
+    <title>个人展示主页</title>
     <style>
+        :root {
+            --bg: #f5f7fb;
+            --card: #ffffff;
+            --text: #111827;
+            --muted: #6b7280;
+            --accent: #2563eb;
+            --line: #e5e7eb;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "微软雅黑", sans-serif;
+            font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
         }
+
         body {
-            background: #f0f4f8;
+            min-height: 100vh;
+            background: radial-gradient(circle at top right, #dbeafe 0%, var(--bg) 38%);
+            color: var(--text);
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            padding: 24px;
         }
-        /* 天气卡片样式 */
-        .weather-card {
-            width: 340px;
-            background: linear-gradient(135deg, #5b9aff, #3672e9);
-            border-radius: 20px;
-            padding: 30px;
-            color: #fff;
-            box-shadow: 0 8px 25px rgba(54, 114, 233, 0.3);
+
+        .profile-card {
+            width: min(920px, 100%);
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+            overflow: hidden;
         }
-        .city {
-            font-size: 22px;
-            font-weight: 500;
-            margin-bottom: 10px;
-        }
-        .date {
-            font-size: 14px;
-            opacity: 0.9;
-            margin-bottom: 25px;
-        }
-        .temp-box {
+
+        .hero {
             display: flex;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 36px;
+            border-bottom: 1px solid var(--line);
+            flex-wrap: wrap;
+        }
+
+        .name {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 0.2px;
+        }
+
+        .role {
+            font-size: 16px;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+
+        .intro {
+            max-width: 520px;
+            line-height: 1.75;
+            color: #374151;
+        }
+
+        .badge {
+            display: inline-flex;
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 30px;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: #eff6ff;
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 600;
         }
-        .temp {
-            font-size: 60px;
-            font-weight: bold;
+
+        .content {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 26px;
+            padding: 30px 36px 36px;
         }
-        .weather-desc {
-            font-size: 20px;
+
+        .section h2 {
+            font-size: 15px;
+            color: var(--muted);
+            margin-bottom: 14px;
+            letter-spacing: 0.2px;
         }
-        .info-row {
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(120px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat {
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 16px;
+        }
+
+        .stat .num {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .stat .label {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .skills {
             display: flex;
-            justify-content: space-between;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            padding-top: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
-        .info-item {
-            text-align: center;
+
+        .skills span {
+            padding: 8px 12px;
+            background: #f9fafb;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            font-size: 13px;
         }
-        .info-item p:first-child {
+
+        .projects {
+            display: grid;
+            gap: 12px;
+        }
+
+        .project {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 14px 16px;
+        }
+
+        .project h3 {
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+
+        .project p {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .footer {
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px dashed var(--line);
+            color: #4b5563;
             font-size: 14px;
-            opacity: 0.85;
-            margin-bottom: 5px;
         }
-        .info-item p:last-child {
-            font-size: 18px;
-            font-weight: 500;
+
+        @media (max-width: 760px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .name {
+                font-size: 28px;
+            }
+
+            .hero, .content {
+                padding: 24px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="weather-card">
-        <div class="city">成哈哈都</div>
-        <div class="date">2026年05月01日 星期五</div>
-        
-        <div class="temp-box">
-            <div class="temp">24°</div>
-            <div class="weather-desc">多云 微风</div>
-        </div>
+    <main class="profile-card">
+        <section class="hero">
+            <div>
+                <p class="badge">✨ Personal Portfolio</p>
+                <h1 class="name">林晨 / Chen Lin</h1>
+                <p class="role">产品设计师 · 前端开发者</p>
+                <p class="intro">专注把复杂问题变成清晰体验，擅长从 0 到 1 打造产品界面。热爱现代、简约、有温度的设计语言。</p>
+            </div>
+        </section>
 
-        <div class="info-row">
-            <div class="info-item">
-                <p>最高温</p>
-                <p>28°</p>
+        <section class="content">
+            <div class="section">
+                <h2>核心数据</h2>
+                <div class="stats">
+                    <div class="stat"><div class="num">6+</div><div class="label">年设计经验</div></div>
+                    <div class="stat"><div class="num">28</div><div class="label">上线项目</div></div>
+                    <div class="stat"><div class="num">12w+</div><div class="label">服务用户数</div></div>
+                    <div class="stat"><div class="num">98%</div><div class="label">满意度</div></div>
+                </div>
+
+                <h2>技能标签</h2>
+                <div class="skills">
+                    <span>UI/UX</span>
+                    <span>Figma</span>
+                    <span>HTML/CSS</span>
+                    <span>React</span>
+                    <span>Design System</span>
+                    <span>品牌视觉</span>
+                </div>
             </div>
-            <div class="info-item">
-                <p>最低温</p>
-                <p>16°</p>
+
+            <div class="section">
+                <h2>精选项目</h2>
+                <div class="projects">
+                    <article class="project">
+                        <h3>企业中台重构</h3>
+                        <p>统一 40+ 页面视觉规范，减少 35% 学习成本，显著提升团队协作效率。</p>
+                    </article>
+                    <article class="project">
+                        <h3>电商 App 改版</h3>
+                        <p>优化下单路径与信息层级，转化率提升 19%，用户停留时长提升 27%。</p>
+                    </article>
+                    <article class="project">
+                        <h3>品牌官网焕新</h3>
+                        <p>以简约风格重塑品牌气质，结合响应式布局，兼顾视觉冲击与可用性。</p>
+                    </article>
+                </div>
+                <p class="footer">📮 联系方式：hello@chenlin.design · 上海 / 远程协作</p>
             </div>
-            <div class="info-item">
-                <p>湿度</p>
-                <p>52%</p>
-            </div>
-            <div class="info-item">
-                <p>风力</p>
-                <p>3级</p>
-            </div>
-        </div>
-    </div>
+        </section>
+    </main>
 </body>
 </html>
-
