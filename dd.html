@@ -5,6 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>杨经帝的个人博客</title>
     <style>
+        :root {
+            --bg: #f5f7fa;
+            --text: #333;
+            --header: #2c3e50;
+            --card: #fff;
+            --primary: #3498db;
+            --primary-hover: #2980b9;
+            --muted: #6b7280;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark {
+            --bg: #111827;
+            --text: #e5e7eb;
+            --header: #0f172a;
+            --card: #1f2937;
+            --primary: #60a5fa;
+            --primary-hover: #3b82f6;
+            --muted: #9ca3af;
+            --shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,105 +35,168 @@
         }
 
         body {
-            background-color: #f5f7fa;
-            color: #333;
+            background-color: var(--bg);
+            color: var(--text);
             line-height: 1.6;
+            transition: background-color .2s ease, color .2s ease;
         }
 
-        /* 头部导航 */
         header {
-            background: #2c3e50;
+            background: var(--header);
             color: white;
             padding: 20px 0;
             text-align: center;
         }
 
-        header h1 {
-            margin-bottom: 10px;
+        header h1 { margin-bottom: 8px; }
+        header p { opacity: 0.85; }
+
+        .top-actions {
+            margin-top: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
-        header p {
-            opacity: 0.8;
-        }
-
-        /* 容器 */
         .container {
-            max-width: 800px;
-            margin: 40px auto;
+            max-width: 900px;
+            margin: 32px auto;
             padding: 0 20px;
         }
 
-        /* 卡片样式 */
         .card {
-            background: white;
-            padding: 30px;
-            margin-bottom: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: var(--card);
+            padding: 24px;
+            margin-bottom: 24px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
         }
 
         .card h2 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            border-left: 4px solid #3498db;
+            color: var(--text);
+            margin-bottom: 12px;
+            border-left: 4px solid var(--primary);
             padding-left: 10px;
+            font-size: 20px;
         }
 
-        .card p {
-            margin-bottom: 15px;
-            font-size: 16px;
-        }
+        .card p { margin-bottom: 10px; font-size: 16px; }
 
-        /* 链接按钮 */
-        .btn {
+        .btn, button {
+            border: none;
+            cursor: pointer;
             display: inline-block;
-            padding: 10px 20px;
-            background: #3498db;
+            padding: 9px 16px;
+            background: var(--primary);
             color: white;
             text-decoration: none;
-            border-radius: 5px;
-            transition: 0.3s;
+            border-radius: 8px;
+            transition: 0.2s;
         }
 
-        .btn:hover {
-            background: #2980b9;
+        .btn:hover, button:hover { background: var(--primary-hover); }
+
+        .inline-tools { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+
+        input[type="text"], input[type="date"], textarea {
+            width: 100%;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            padding: 10px;
+            background: #fff;
+            margin: 8px 0;
         }
 
-        /* 页脚 */
+        body.dark input[type="text"],
+        body.dark input[type="date"],
+        body.dark textarea {
+            background: #111827;
+            color: #e5e7eb;
+            border-color: #374151;
+        }
+
+        .todo-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px dashed #d1d5db;
+        }
+
+        .todo-item small { color: var(--muted); }
+
+        .quote-box {
+            padding: 12px;
+            border-radius: 8px;
+            background: rgba(52, 152, 219, 0.1);
+            margin-top: 8px;
+        }
+
+        .hidden { display: none; }
+
         footer {
             text-align: center;
             padding: 20px;
-            color: #666;
-            margin-top: 50px;
+            color: var(--muted);
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
-    <!-- 头部 -->
     <header>
         <h1>欢迎来到杨经帝的个人博客</h1>
         <p>记录生活 · 分享心情 · 点滴成长</p>
+        <div class="top-actions">
+            <button id="themeToggle">🌙 夜间模式</button>
+            <button id="dailyCheckIn">✅ 今日打卡</button>
+        </div>
     </header>
 
-    <!-- 主体内容 -->
     <div class="container">
-        <!-- 关于我 -->
         <div class="card">
             <h2>关于我</h2>
             <p>你好呀！我是一个喜欢记录生活、热爱分享的普通人。</p>
             <p>喜欢听歌、看风景、记录日常小美好，在这里写下自己的心事和感悟。</p>
         </div>
 
-        <!-- 最新文章 -->
         <div class="card">
-            <h2>最新随笔</h2>
-            <p>1. 生活慢慢来，一切都会越来越好</p>
-            <p>2. 保持热爱，奔赴每一场山海</p>
-            <p>3. 简单平凡，就是最好的生活</p>
+            <h2>最新随笔（可搜索）</h2>
+            <input id="searchInput" type="text" placeholder="输入关键词筛选文章，例如：生活 / 热爱" />
+            <div id="postList">
+                <p data-post>1. 生活慢慢来，一切都会越来越好</p>
+                <p data-post>2. 保持热爱，奔赴每一场山海</p>
+                <p data-post>3. 简单平凡，就是最好的生活</p>
+            </div>
             <a href="#" class="btn">查看更多文章</a>
         </div>
 
-        <!-- 联系方式 -->
+        <div class="card">
+            <h2>待办清单（本地保存）</h2>
+            <input id="todoInput" type="text" placeholder="输入今天要完成的事..." />
+            <input id="todoDate" type="date" />
+            <div class="inline-tools">
+                <button id="addTodo">添加待办</button>
+                <button id="clearTodo">清空全部</button>
+            </div>
+            <div id="todoList" style="margin-top: 10px;"></div>
+        </div>
+
+        <div class="card">
+            <h2>灵感便签（自动保存）</h2>
+            <textarea id="notePad" rows="5" placeholder="随手记下灵感、计划或一句话...\n内容会自动保存在浏览器中。"></textarea>
+            <small style="color: var(--muted);">最后保存时间：<span id="savedAt">尚未保存</span></small>
+        </div>
+
+        <div class="card">
+            <h2>今日一句</h2>
+            <div id="quote" class="quote-box">点按钮获取一句鼓励话语 ✨</div>
+            <div class="inline-tools">
+                <button id="newQuote">换一句</button>
+            </div>
+        </div>
+
         <div class="card">
             <h2>联系我</h2>
             <p>微信：xxxxxxx</p>
@@ -119,9 +204,115 @@
         </div>
     </div>
 
-    <!-- 页脚 -->
     <footer>
         &copy; 2026 我的个人博客 版权所有
     </footer>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const dailyCheckIn = document.getElementById('dailyCheckIn');
+        const searchInput = document.getElementById('searchInput');
+        const posts = [...document.querySelectorAll('[data-post]')];
+        const todoInput = document.getElementById('todoInput');
+        const todoDate = document.getElementById('todoDate');
+        const addTodo = document.getElementById('addTodo');
+        const clearTodo = document.getElementById('clearTodo');
+        const todoList = document.getElementById('todoList');
+        const notePad = document.getElementById('notePad');
+        const savedAt = document.getElementById('savedAt');
+        const quote = document.getElementById('quote');
+        const newQuote = document.getElementById('newQuote');
+
+        const quotes = [
+            '把普通的日子过得浪漫一些。',
+            '别急，慢一点也在前进。',
+            '你认真生活的样子很好看。',
+            '允许自己不完美，但要持续成长。',
+            '每一次坚持，都在塑造更好的你。'
+        ];
+
+        const loadTheme = () => {
+            const isDark = localStorage.getItem('theme') === 'dark';
+            document.body.classList.toggle('dark', isDark);
+            themeToggle.textContent = isDark ? '☀️ 日间模式' : '🌙 夜间模式';
+        };
+
+        themeToggle.onclick = () => {
+            const darkNow = !document.body.classList.contains('dark');
+            localStorage.setItem('theme', darkNow ? 'dark' : 'light');
+            loadTheme();
+        };
+
+        dailyCheckIn.onclick = () => {
+            const today = new Date().toISOString().slice(0, 10);
+            localStorage.setItem('checkInDate', today);
+            dailyCheckIn.textContent = `✅ 已打卡 (${today})`;
+        };
+
+        const checkedDate = localStorage.getItem('checkInDate');
+        if (checkedDate) dailyCheckIn.textContent = `✅ 已打卡 (${checkedDate})`;
+
+        searchInput.oninput = (e) => {
+            const key = e.target.value.trim().toLowerCase();
+            posts.forEach(post => {
+                const hit = post.textContent.toLowerCase().includes(key);
+                post.classList.toggle('hidden', !hit);
+            });
+        };
+
+        const renderTodos = () => {
+            const todos = JSON.parse(localStorage.getItem('todos') || '[]');
+            if (!todos.length) {
+                todoList.innerHTML = '<small style="color: var(--muted);">暂无待办，开始添加吧～</small>';
+                return;
+            }
+            todoList.innerHTML = todos.map((t, i) => `
+                <div class="todo-item">
+                    <div>
+                        <strong>${t.text}</strong><br>
+                        <small>截止：${t.date || '未设置'}</small>
+                    </div>
+                    <button onclick="removeTodo(${i})">完成</button>
+                </div>
+            `).join('');
+        };
+
+        window.removeTodo = (index) => {
+            const todos = JSON.parse(localStorage.getItem('todos') || '[]');
+            todos.splice(index, 1);
+            localStorage.setItem('todos', JSON.stringify(todos));
+            renderTodos();
+        };
+
+        addTodo.onclick = () => {
+            const text = todoInput.value.trim();
+            if (!text) return;
+            const todos = JSON.parse(localStorage.getItem('todos') || '[]');
+            todos.unshift({ text, date: todoDate.value });
+            localStorage.setItem('todos', JSON.stringify(todos));
+            todoInput.value = '';
+            todoDate.value = '';
+            renderTodos();
+        };
+
+        clearTodo.onclick = () => {
+            localStorage.removeItem('todos');
+            renderTodos();
+        };
+
+        notePad.value = localStorage.getItem('notePad') || '';
+        notePad.oninput = () => {
+            localStorage.setItem('notePad', notePad.value);
+            savedAt.textContent = new Date().toLocaleString();
+        };
+
+        newQuote.onclick = () => {
+            const pick = quotes[Math.floor(Math.random() * quotes.length)];
+            quote.textContent = pick;
+        };
+
+        loadTheme();
+        renderTodos();
+    </script>
 </body>
 </html>
