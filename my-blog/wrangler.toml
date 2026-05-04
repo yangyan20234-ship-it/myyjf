@@ -1,0 +1,11 @@
+name = "my-blog"
+main = "src/index.js"
+compatibility_date = "2024-05-01"
+
+[[kv_namespaces]]
+binding = "MY_BLOG_KV"
+id = "你运行后得到的真实id"   # 比如 abc123...
+
+[vars]
+BLOG_PASSWORD = "12345"      # 改成你自己的密码
+SECRET_KEY = "123123abc"  # 务必改成你自己的随机字符串
